@@ -38,9 +38,8 @@ th {
 
 }
 
-.edit,
-.update {
-    opacity: 0;
+.addRow {
+    margin-left: 20px;
 }
 
 
