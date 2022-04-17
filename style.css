@@ -1,0 +1,49 @@
+.input {
+    margin-bottom: 20px;
+}
+
+.input__title {
+    font-size: 25px;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.name__input {
+    margin-left: 22px;
+}
+
+.btn__submit {
+    margin: 10px;
+}
+
+.table {
+    margin-left: 100px;
+}
+
+.row {
+    font-size: 20px;
+}
+
+.row__heading {
+    padding: 10px;
+}
+
+table,
+td,
+th {
+    width: auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+    height: 30px;
+
+}
+
+.edit,
+.update {
+    opacity: 0;
+}
+
+
+.footer {
+    margin-left: 100px;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h1>Enter your Details</h1>
+    <form>
+        <div class="input__name input">
+            <label class="input__title">Name</label>
+            <input type="text" class="name__input">
+        </div>
+
+        <div class="input__address input">
+            <label class="input__title">Address</label>
+            <input type="text" class="address__input">
+        </div>
+
+        <div class="input__number input">
+            <label class="input__title">Number</label>
+            <input type="number" class="number__input">
+        </div>
+
+        <button class="btn__submit">Submit</button>
+    </form>
+    <table>
+        <tbody class="table">
+            <tr class="row">
+                <th class="row__heading">Name</th>
+                <th class="row__heading">Address</th>
+                <th class="row__heading">Number</th>
+                <th class="row__heading">Actions</th>
+            </tr>
+            </tr>
+            <tr class="footer" id="action_row">
+                <td class="row__heading"><input type="text" id="userName"></td>
+                <td class="row__heading"><input type="text" id="userAddress"></td>
+                <td class="row__heading"><input type="number" id="userNumber"></td>
+                <td colspan="4"><input type="button" value="Add" class="addRow">
+                    <input type="button" value="Edit" class="edit">
+                    <input type="button" onclick="update()" value="Update" class="update">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+<!-- <tr class="row">
+            <td class="row__heading"><input type="text" name="userName[]"></td>
+            <td class="row__heading"><input type="text" name="address[]"></td>
+            <td class="row__heading"><input type="number" name="number[]"></td>
+            <td class="row__heading">
+                <input type="button" value="Edit" class="edit">
+                <input type="button" value="Remove" class="remove">
+            </td> -->
