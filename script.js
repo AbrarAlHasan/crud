@@ -6,6 +6,12 @@ const tableBody = document.querySelector("tbody");
 let data = [];
 let count = 0;
 
+if (localStorage.getItem("data")) {
+  data = JSON.parse(localStorage.getItem("data"));
+  count = Math.max(...data.map((el) => el.id));
+  populateTable(tableBody, data);
+}
+
 tableBody.addEventListener("click", (e) => {
   const rowTarget = e.target.parentNode.parentNode;
   if (e.target.id == "addRow") addRow();
@@ -23,7 +29,7 @@ function addRow() {
   const number = document.getElementById(`userNumber`).value;
 
   data.push(new Person(count, name, address, number));
-  console.log(data);
+  localStorage.setItem("data", JSON.stringify(data));
 
   populateTable(tableBody, data);
 }
@@ -31,7 +37,8 @@ function addRow() {
 function removefn(el) {
   //   const remove = document.getElementById("remove");
   data = data.filter((data) => data.id != el.id);
-  el.remove();
+  localStorage.setItem("data", JSON.stringify(data));
+  populateTable(tableBody, data);
   //   remove.closest(".latrow").remove();
 }
 
@@ -56,6 +63,7 @@ function update(el) {
   const number = el.querySelector(`#userNumber`).value;
 
   data[index] = new Person(el.id, name, address, number);
+  localStorage.setItem("data", JSON.stringify(data));
   populateTable(tableBody, data);
 }
 
