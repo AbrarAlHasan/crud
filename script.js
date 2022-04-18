@@ -1,72 +1,63 @@
-const addRow = document.querySelector('.addRow');
-const table = document.querySelector('.footer');
-const form = document.querySelector('form');
-const submit = document.querySelector('.btn__submit');
-const addRowlast = document.querySelector('.footer');
+import Person from "./Person.js";
+import populateTable from "./populateTable.js";
 
+const tableBody = document.querySelector("tbody");
 
-const data = [];
-const obj = {};
+let data = [];
+let count = 0;
 
-addRow.addEventListener('click', function (e) {
-    e.preventDefault();
-
-    let count = 1;
-    count++;
-    console.log(count);
-
-
-    const name = document.getElementById(`userName${count}`).value;
-    const address = document.getElementById(`userAddress${count}`).value;
-    const number = document.getElementById(`userNumber${count}`).value;
-
-    const newRow = `<tr class="latrow">
-    <td class="row__heading"><label>${name}</label></td>
-    <td class="row__heading"><label>${address}</label></td>
-    <td class="row__heading"><label>${number}</label></td>
-    <td class="row__heading">
-    <input type="button" value="Edit" id="edit">
-    <input type="button" value="Remove" id="remove" onclick="removefn()">
-    </td>
-    </tr>`
-    // table.innerHTML += newRow;
-    table.insertAdjacentHTML('beforebegin', newRow);
-
-    document.getElementById(`userName${count}`).value = null;
-    document.getElementById(`userAddress${count}`).value = null;
-    document.getElementById(`userNumber${count}`).value = null;
-
+tableBody.addEventListener("click", (e) => {
+  const rowTarget = e.target.parentNode.parentNode;
+  if (e.target.id == "addRow") addRow();
+  if (e.target.id == "remove") removefn(rowTarget);
+  if (e.target.id == "edit") edit(rowTarget);
+  if (e.target.id == "cancel") populateTable(tableBody, data);
+  if (e.target.id == "update") update(rowTarget);
 });
 
+function addRow() {
+  count++;
 
+  const name = document.getElementById(`userName`).value;
+  const address = document.getElementById(`userAddress`).value;
+  const number = document.getElementById(`userNumber`).value;
 
+  data.push(new Person(count, name, address, number));
+  console.log(data);
 
-
-function removefn() {
-    const remove = document.getElementById("remove");
-    console.log(remove);
-    remove.closest('.latrow').remove();
+  populateTable(tableBody, data);
 }
 
-function update() {
-    const name = document.getElementById("userName").value;
-    const address = document.getElementById("userAddress").value;
-    const number = document.getElementById("userNumber").value;
-
-    const obj = { name: name, address: address, number: number };
-    console.log(obj);
-    data.push(obj);
-
-    const userName_label = document.getElementById("userName");
-    const userAddress_label = document.getElementById("userAddress");
-    const userNumber_label = document.getElementById("userNumber");
-    userName_label.outerHTML = `<label></label>`;
-    userAddress_label.outerHTML = `<label></label>`;
-    userNumber_label.outerHTML = `<label></label>`;
-
+function removefn(el) {
+  //   const remove = document.getElementById("remove");
+  data = data.filter((data) => data.id != el.id);
+  el.remove();
+  //   remove.closest(".latrow").remove();
 }
 
+function edit(el) {
+  const person = data.find((person) => person.id == el.id);
+  const editRow = `<td class="row__heading"><input type="text" id="userName" value="${person.name}"></td>
+    <td class="row__heading"><input type="text" id="userAddress" value="${person.address}"></td>
+    <td class="row__heading"><input type="number" id="userNumber" value="${person.number}"></td>
+    <td><input type="button" value="Update" id="update">
+    <input type="button" value="Cancel" id="cancel"></td>`;
 
+  el.innerHTML = editRow;
+}
+
+function update(el) {
+  // get the index of the person which we need to edit in the data
+  const index = data.findIndex((person) => person.id == el.id);
+
+  // get all the current values in the editing row
+  const name = el.querySelector(`#userName`).value;
+  const address = el.querySelector(`#userAddress`).value;
+  const number = el.querySelector(`#userNumber`).value;
+
+  data[index] = new Person(el.id, name, address, number);
+  populateTable(tableBody, data);
+}
 
 // if (update) {
 //     update.addEventListener('click', function (e) {
@@ -79,26 +70,6 @@ function update() {
 //         console.log(name, address, number);
 //     })
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // addRow.addEventListener('click', function (e) {
 //     e.preventDefault();
@@ -116,17 +87,6 @@ function update() {
 
 // });
 
-
-
-
-
-
-
-
-
-
-
-
 // const update = document.querySelector('.update');
 // update.addEventListener('click', function (e) {
 //     e.preventDefault();
@@ -135,32 +95,6 @@ function update() {
 //     console.log(name, 'afdf')
 
 // })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // submit.addEventListener('click', function (e) {
 //     e.preventDefault();

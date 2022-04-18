@@ -3,28 +3,28 @@
 
 <head>
     <link rel="stylesheet" href="style.css" />
+
 </head>
 
 <body>
     <h1>Enter your Details</h1>
     <table>
         <tbody class="table">
-            <tr class="row">
+            <tr class="row" id="table-heading">
                 <th class="row__heading">Name</th>
                 <th class="row__heading">Address</th>
                 <th class="row__heading">Number</th>
                 <th class="row__heading">Actions</th>
             </tr>
-            </tr>
             <tr class="footer" id="action_row">
-                <td class="row__heading"><input type="text" id="userName1"></td>
-                <td class="row__heading"><input type="text" id="userAddress1"></td>
-                <td class="row__heading"><input type="number" id="userNumber1"></td>
-                <td colspan="4"><input type="button" value="Add" class="addRow"></td>
+                <td class="row__heading"><input type="text" id="userName"></td>
+                <td class="row__heading"><input type="text" id="userAddress"></td>
+                <td class="row__heading"><input type="number" id="userNumber"></td>
+                <td><input type="button" value="Add" id="addRow"></td>
             </tr>
         </tbody>
     </table>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>
