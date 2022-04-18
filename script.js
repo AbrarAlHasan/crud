@@ -2,7 +2,6 @@ const addRow = document.querySelector('.addRow');
 const table = document.querySelector('.footer');
 const form = document.querySelector('form');
 const submit = document.querySelector('.btn__submit');
-//const update = document.querySelector('update');
 const addRowlast = document.querySelector('.footer');
 
 
@@ -12,28 +11,42 @@ const obj = {};
 addRow.addEventListener('click', function (e) {
     e.preventDefault();
 
-    const name = document.getElementById("userName").value;
-    const address = document.getElementById("userAddress").value;
-    const number = document.getElementById("userNumber").value;
+    let count = 1;
+    count++;
+    console.log(count);
 
-    const newRow = `<tr>
+
+    const name = document.getElementById(`userName${count}`).value;
+    const address = document.getElementById(`userAddress${count}`).value;
+    const number = document.getElementById(`userNumber${count}`).value;
+
+    const newRow = `<tr class="latrow">
     <td class="row__heading"><label>${name}</label></td>
     <td class="row__heading"><label>${address}</label></td>
     <td class="row__heading"><label>${number}</label></td>
     <td class="row__heading">
     <input type="button" value="Edit" id="edit">
-    <input type="button" value="Remove" id="remove">
+    <input type="button" value="Remove" id="remove" onclick="removefn()">
     </td>
     </tr>`
     // table.innerHTML += newRow;
     table.insertAdjacentHTML('beforebegin', newRow);
 
-    document.getElementById("userName").value = null;
-    document.getElementById("userAddress").value = null;
-    document.getElementById("userNumber").value = null;
-
+    document.getElementById(`userName${count}`).value = null;
+    document.getElementById(`userAddress${count}`).value = null;
+    document.getElementById(`userNumber${count}`).value = null;
 
 });
+
+
+
+
+
+function removefn() {
+    const remove = document.getElementById("remove");
+    console.log(remove);
+    remove.closest('.latrow').remove();
+}
 
 function update() {
     const name = document.getElementById("userName").value;
